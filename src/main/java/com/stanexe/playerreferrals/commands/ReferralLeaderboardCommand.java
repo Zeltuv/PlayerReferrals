@@ -9,7 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ReferralLeaderboardCommand implements CommandExecutor {
     final PlayerReferrals plugin = PlayerReferrals.getInstance();
     final FileConfiguration messages = plugin.getMessagesConfig();
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(  CommandSender commandSender,   Command command,   String label,   String[] args) {
         if (!plugin.getConfig().getBoolean("enable-leaderboard")) {
             commandSender.sendMessage(ChatColor.RED + "The leaderboard is disabled.");
         }

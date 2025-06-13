@@ -224,12 +224,10 @@ public class RefUser {
                 cmd = cmd.replace("%score%", String.valueOf(this.getPlayerScore()));
                 cmd = cmd.replace("%referralUsername%", String.valueOf(Bukkit.getOfflinePlayer(referralUUID).getName()));
                 String finalCmd = cmd;
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
-                    }
-                }.runTask(plugin);
+                PlayerReferrals.getScheduler().runNextTick(wrappedTask -> {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
+                });
+
 
             }
         }
@@ -256,12 +254,11 @@ public class RefUser {
                 cmd = cmd.replace("%score%", String.valueOf(score));
                 cmd = cmd.replace("%referredUsername%", String.valueOf(Bukkit.getOfflinePlayer(referralUUID).getName()));
                 String finalCmd = cmd;
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
-                    }
-                }.runTask(plugin);
+
+
+                PlayerReferrals.getScheduler().runNextTick(wrappedTask -> {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
+                });
             }
         }
         if (Milestones.isMilestone(score)) {
@@ -286,12 +283,10 @@ public class RefUser {
                 cmd = cmd.replace("%username%", p.getName());
                 cmd = cmd.replace("%score%", String.valueOf(score));
                 String finalCmd = cmd;
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
-                    }
-                }.runTask(plugin);
+
+                PlayerReferrals.getScheduler().runNextTick(wrappedTask -> {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCmd);
+                });
             }
 
         }

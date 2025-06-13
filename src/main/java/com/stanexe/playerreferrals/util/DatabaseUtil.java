@@ -57,12 +57,9 @@ public class DatabaseUtil {
     public static boolean initializeTables(Connection conn) {
         if (conn == null) {
             plugin.getLogger().warning("Connection to the database appears to be invalid.");
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    Bukkit.getPluginManager().disablePlugin(plugin);
-                }
-            }.runTask(plugin);
+            PlayerReferrals.getScheduler().runNextTick(wrappedTask -> {
+                Bukkit.getPluginManager().disablePlugin(plugin);
+            });
 
             return false;
         }

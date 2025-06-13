@@ -4,8 +4,6 @@ import com.stanexe.playerreferrals.PlayerReferrals;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.UUID;
 
 
@@ -18,17 +16,17 @@ public class PlayerReferralsExpansion extends PlaceholderExpansion {
     }
 
     @Override
-    public @NotNull String getIdentifier() {
+    public   String getIdentifier() {
         return "playerreferrals";
     }
 
     @Override
-    public @NotNull String getAuthor() {
+    public   String getAuthor() {
         return "StanEXE";
     }
 
     @Override
-    public @NotNull String getVersion() {
+    public   String getVersion() {
         return "1.0.0";
     }
 

@@ -7,6 +7,8 @@ import com.stanexe.playerreferrals.events.JoinListener;
 import com.stanexe.playerreferrals.util.Cache;
 import com.stanexe.playerreferrals.util.Milestones;
 import com.stanexe.playerreferrals.util.PlayerReferralsExpansion;
+import com.tcoded.folialib.FoliaLib;
+import com.tcoded.folialib.impl.PlatformScheduler;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -19,6 +21,13 @@ import java.io.IOException;
 import java.util.Objects;
 
 public final class PlayerReferrals extends JavaPlugin {
+
+    public static PlatformScheduler getScheduler() {
+        return foliaLib.getScheduler();
+    }
+
+    private static FoliaLib foliaLib;
+
     private static PlayerReferrals instance;
     private FileConfiguration messagesConfig;
 
@@ -28,15 +37,11 @@ public final class PlayerReferrals extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        foliaLib = new FoliaLib(this);
+
         // Save default configs
         this.saveDefaultConfig();
         createMessagesConfig();
-
-        // bStats
-        if (getConfig().getBoolean("bStats")) {
-            int pluginId = 11044;
-            Metrics metrics = new Metrics(this, pluginId);
-        }
 
         // Init milestones
         new Milestones();
